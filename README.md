@@ -54,3 +54,13 @@ Estructura del Proyecto
     ├── models.py
     ├── routes.py
     ├── gestion_gastos.db
+
+API Endpoints
+-------------
+
+| Metodos   | URL                                      | Descripcion                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `POST`   | `/api/registrar_departamento`                             | Registrar Departamento.                       |
+| `POST`    | `/api/generar_gastos`                             | Generar Gastos.                      |
+| `POST`   | `/api/pagar_gasto`                             | Registrar Pago.                       |
+| `GET`    | `/api/gastos_pendientes?mes={mes}&anio={anio}`                          | Consultar Gastos Pendientes.                       |
