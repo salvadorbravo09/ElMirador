@@ -46,3 +46,11 @@ Instalación
 
 `python app.py`
 
+Estructura del Proyecto
+-----------------------
+
+    gestion-gastos-comunes/
+    ├── app.py
+    ├── models.py
+    ├── routes.py
+    ├── gestion_gastos.db
