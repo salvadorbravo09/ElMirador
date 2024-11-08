@@ -2,6 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+class Departamento(db.Model):
+    __tablename__ = 'departamentos'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    numero = db.Column(db.String(10), unique=True, nullable=False)
+
 class GastoComun(db.Model):
     __tablename__ = 'gastos_comunes'
     
