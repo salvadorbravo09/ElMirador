@@ -30,11 +30,19 @@ Instalación
 
 ```cd ElMirador```
 
-3.  Instala las dependencias:
+3.  Crear entorno virtual
+
+```python -m venv .venv```
+
+4.  Activar entorno virtual
+
+```.venv\Scripts\activate```
+
+5.  Instala las dependencias:
 
 `pip install -r requirements.txt`
 
-4.  Inicializa la base de datos:
+6.  Inicializa la base de datos:
 
 `python app.py`
 
