@@ -1,4 +1,4 @@
-El Mirador - Sistema de Gestión de Gastos Comunes
+### El Mirador - Sistema de Gestión de Gastos Comunes
 
 Este sistema permite administrar los gastos comunes de departamentos, incluyendo el registro de departamentos, generación de gastos mensuales y control de pagos.
 
