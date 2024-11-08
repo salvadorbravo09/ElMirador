@@ -80,3 +80,26 @@ def pagar_gasto():
         "periodo": f"{mes}/{anio}",
         "estado": estado
     }), 200
+    
+@api.route('/gastos_pendientes', methods=['GET'])
+def gastos_pendientes():
+    mes = int(request.args.get('mes'))
+    anio = int(request.args.get('anio'))
+
+    # Asegúrate de que el filtro es correcto para mes y año
+    gastos = GastoComun.query.filter(
+        GastoComun.mes == mes,  # Se asegura que el mes sea el correcto
+        GastoComun.anio == anio,  # Se asegura que el año sea el correcto
+        GastoComun.pagado == False  # Solo los gastos no pagados
+    ).order_by(GastoComun.anio, GastoComun.mes).all()
+
+    if not gastos:
+        return jsonify({"mensaje": "Sin montos pendientes"}), 200
+
+    result = [{
+        "departamento": gasto.departamento.numero,
+        "periodo": f"{gasto.mes}/{gasto.anio}",
+        "monto": gasto.monto
+    } for gasto in gastos]
+
+    return jsonify(result), 200
