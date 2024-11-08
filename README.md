@@ -64,3 +64,36 @@ API Endpoints
 | `POST`    | `/api/generar_gastos`                             | Generar Gastos.                      |
 | `POST`   | `/api/pagar_gasto`                             | Registrar Pago.                       |
 | `GET`    | `/api/gastos_pendientes?mes={mes}&anio={anio}`                          | Consultar Gastos Pendientes.                       |
+
+#### Registrar Departamento
+```
+{
+  "numero":  "101"
+}
+```
+
+#### Generar Gastos
+```
+{
+  "mes":  1,
+  "anio":  2024
+}
+```
+
+#### Registrar Pago
+```
+{
+  "departamento": "101",
+  "mes": 1,
+  "anio": 2024,
+  "fecha_pago": "2024-01-15"
+}
+```
+
+#### Consultar Gastos Pendientes
+```
+{
+  GET /api/gastos_pendientes?mes=1&anio=2024
+}
+```
+
