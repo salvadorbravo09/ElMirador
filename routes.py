@@ -47,3 +47,36 @@ def generar_gastos():
     db.session.commit()
     return jsonify({"mensaje": "Gastos generados exitosamente"}), 201
 
+@api.route('/pagar_gasto', methods=['POST'])
+def pagar_gasto():
+    data = request.json
+    departamento_numero = data.get('departamento')
+    mes = data.get('mes')
+    anio = data.get('anio')
+    fecha_pago = datetime.strptime(data.get('fecha_pago'), '%Y-%m-%d').date()
+
+    departamento = Departamento.query.filter_by(numero=departamento_numero).first()
+    if not departamento:
+        return jsonify({"error": "Departamento no encontrado"}), 404
+
+    gasto = GastoComun.query.filter_by(departamento_id=departamento.id, mes=mes, anio=anio).first()
+    if not gasto:
+        return jsonify({"error": "Gasto no encontrado para el período especificado"}), 404
+
+    if gasto.pagado:
+        return jsonify({"mensaje": "Pago duplicado"}), 400
+    
+    gasto.pagado = True
+    gasto.fecha_pago = fecha_pago
+    
+    hoy = date.today()
+    estado = "Pago exitoso dentro del plazo" if fecha_pago <= hoy else "Pago exitoso fuera de plazo"
+    
+    db.session.commit()
+    
+    return jsonify({
+        "departamento": departamento.numero,
+        "fecha_cancelacion": fecha_pago.strftime('%Y-%m-%d'),
+        "periodo": f"{mes}/{anio}",
+        "estado": estado
+    }), 200
