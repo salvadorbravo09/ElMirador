@@ -86,11 +86,10 @@ def gastos_pendientes():
     mes = int(request.args.get('mes'))
     anio = int(request.args.get('anio'))
 
-    # Asegúrate de que el filtro es correcto para mes y año
     gastos = GastoComun.query.filter(
-        GastoComun.mes == mes,  # Se asegura que el mes sea el correcto
-        GastoComun.anio == anio,  # Se asegura que el año sea el correcto
-        GastoComun.pagado == False  # Solo los gastos no pagados
+        GastoComun.mes == mes, 
+        GastoComun.anio == anio, 
+        GastoComun.pagado == False 
     ).order_by(GastoComun.anio, GastoComun.mes).all()
 
     if not gastos:
